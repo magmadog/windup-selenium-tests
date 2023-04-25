@@ -29,7 +29,7 @@ public abstract class CommonProject {
         // Create a new instance of the driver
         // Notice that the remainder of the code relies on the interface,
         // not the implementation.
-        System.setProperty("webdriver.chrome.driver","/usr/bin/chromedriver");
+        System.setProperty("webdriver.chrome.driver","../chromedriver.exe");
 
         ChromeOptions options = new ChromeOptions();
         if (headless) options.addArguments("--headless");
@@ -41,7 +41,7 @@ public abstract class CommonProject {
 
         // opens up the browser
         driver.get(rhamtBaseUrl);
-        if (withLogin)
+        if (!withLogin)
         {
             WebDriverWait wait = new WebDriverWait(driver, 30);
             wait.until(ExpectedConditions.presenceOfElementLocated(By.id("kc-logo-wrapper")));
@@ -56,9 +56,9 @@ public abstract class CommonProject {
     public void login()
     {
         WebElement username = driver.findElement(By.id("username"));
-        username.sendKeys("rhamt");
+        username.sendKeys("root1");
         WebElement password = driver.findElement(By.id("password"));
-        password.sendKeys("password");
+        password.sendKeys("123456789Root#");
         WebElement loginButton = driver.findElement(By.id("kc-login"));
         loginButton.click();
     }
